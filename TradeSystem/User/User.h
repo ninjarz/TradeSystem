@@ -10,13 +10,13 @@
 using namespace std;
 
 //----------------------------------------------------------------------------------------------------
-typedef enum
+enum class UserType
 {
 	USER_DEFAULT = 0,
 	USER_PURHASER,
 	USER_VIP,
 	USER_SELLER
-} UserType;
+};
 
 class User
 {

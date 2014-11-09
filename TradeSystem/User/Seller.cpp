@@ -7,6 +7,8 @@ Seller::Seller()
 }
 
 Seller::Seller(const Seller& _seller)
+:
+User(_seller)
 {
 
 }

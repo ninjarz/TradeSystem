@@ -7,6 +7,8 @@ Purchaser::Purchaser()
 }
 
 Purchaser::Purchaser(const Purchaser& _purchaser)
+:
+User(_purchaser)
 {
 
 }
@@ -36,22 +38,29 @@ bool Purchaser::Recharge(int _value)
 
 
 //----------------------------------------------------------------------------------------------------
-VIP::VIP()
+SuperPurchaser::SuperPurchaser()
+:
+m_level(0),
+m_token(0)
 {
 
 }
 
-VIP::VIP(const VIP& _vip)
+SuperPurchaser::SuperPurchaser(const SuperPurchaser& _superPurchaser)
+:
+Purchaser(_superPurchaser),
+m_level(_superPurchaser.m_level),
+m_token(_superPurchaser.m_token)
 {
 
 }
 
-VIP::~VIP()
+SuperPurchaser::~SuperPurchaser()
 {
 
 }
 
-bool VIP::Register(const string& _userName, const string& _password)
+bool SuperPurchaser::Register(const string& _userName, const string& _password)
 {
 	++s_userCounter;
 
@@ -62,9 +71,9 @@ bool VIP::Register(const string& _userName, const string& _password)
 	return true;
 }
 
-void VIP::PrintUserInfo()
+void SuperPurchaser::PrintUserInfo()
 {
-	cout << "ID:" << m_identifier;
+	cout << "Id:" << m_identifier;
 	cout << " \tName:" << m_userName;
 	cout << " \tBalance:" << m_balance;
 	cout << " \tVIP Level:" << m_level;
@@ -72,7 +81,7 @@ void VIP::PrintUserInfo()
 	cout << endl;
 }
 
-bool VIP::TokenToBalance(int _token)
+bool SuperPurchaser::TokenToBalance(int _token)
 {
 	if (m_token >= _token)
 	{
@@ -85,22 +94,22 @@ bool VIP::TokenToBalance(int _token)
 	return true;
 }
 
-void VIP::SetLevel(int _level)
+void SuperPurchaser::SetLevel(int _level)
 {
 	m_level = _level;
 }
 
-void VIP::SetToken(int _token)
+void SuperPurchaser::SetToken(int _token)
 {
 	m_token = _token;
 }
 
-int VIP::GetLevel()
+int SuperPurchaser::GetLevel()
 {
 	return m_level;
 }
 
-int VIP::GetToken()
+int SuperPurchaser::GetToken()
 {
 	return m_token;
 }

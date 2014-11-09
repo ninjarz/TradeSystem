@@ -4,10 +4,24 @@
 int Goods::m_goodsCounter = 0;
 
 Goods::Goods()
+:
+m_type(GoodsType::GOODS_DEFAULT),
+m_identifier(0),
+m_goodsName(),
+m_amount(0),
+m_price(0),
+m_owner()
 {
 }
 
 Goods::Goods(const Goods& _goods)
+:
+m_type(_goods.m_type),
+m_identifier(_goods.m_identifier),
+m_goodsName(_goods.m_goodsName),
+m_amount(_goods.m_amount),
+m_price(_goods.m_price),
+m_owner(_goods.m_owner)
 {
 
 }
@@ -80,52 +94,4 @@ int Goods::GetPrice()
 string Goods::GetOwner()
 {
 	return m_owner;
-}
-
-//----------------------------------------------------------------------------------------------------
-Food::Food()
-{
-
-}
-
-Food::Food(const Food& _food)
-{
-
-}
-
-Food::~Food()
-{
-
-}
-
-//----------------------------------------------------------------------------------------------------
-Electronics::Electronics()
-{
-
-}
-
-Electronics::Electronics(const Electronics& _electronics)
-{
-
-}
-
-Electronics::~Electronics()
-{
-
-}
-
-//----------------------------------------------------------------------------------------------------
-Supplies::Supplies()
-{
-
-}
-
-Supplies::Supplies(const Supplies& _supplies)
-{
-
-}
-
-Supplies::~Supplies()
-{
-
 }

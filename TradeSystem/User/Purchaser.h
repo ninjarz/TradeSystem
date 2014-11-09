@@ -26,12 +26,12 @@ protected:
 #define DISCOUNT_VIP3 0.8
 #define DISCOUNT_VIP4 0.75
 
-class VIP : public Purchaser
+class SuperPurchaser : public Purchaser
 {
 public:
-	VIP();
-	VIP(const VIP& _vip);
-	~VIP();
+	SuperPurchaser();
+	SuperPurchaser(const SuperPurchaser& _superPurchaser);
+	~SuperPurchaser();
 
 	bool Register(const string& _userName, const string& _password);
 	void PrintUserInfo();

@@ -7,13 +7,13 @@
 using namespace std;
 
 //----------------------------------------------------------------------------------------------------
-typedef enum
+enum class GoodsType
 {
 	GOODS_DEFAULT = 0,
 	GOODS_FOOD,
 	GOODS_ELECTRONICS,
 	GOODS_SUPPLIES
-} GoodsType;
+};
 
 class Goods
 {
@@ -47,48 +47,6 @@ protected:
 	int m_amount;
 	int m_price;
 	string m_owner;
-};
-
-//----------------------------------------------------------------------------------------------------
-class Food : public Goods
-{
-public:
-	Food();
-	Food(const Food& _food);
-	~Food();
-
-private:
-	int m_expiryDate;
-	int m_productionDate;
-	int m_depreciateDate;
-	int m_depreciateFactor;
-
-};
-
-//----------------------------------------------------------------------------------------------------
-class Electronics : public Goods
-{
-public:
-	Electronics();
-	Electronics(const Electronics& _electronics);
-	~Electronics();
-
-private:
-	int m_expiryDate;
-	int m_productionDate;
-	int m_depreciateFactor;
-};
-
-//----------------------------------------------------------------------------------------------------
-class Supplies : public Goods
-{
-public:
-	Supplies();
-	Supplies(const Supplies& _supplies);
-	~Supplies();
-
-private:
-	int m_expiryDate;
 };
 
 #endif
