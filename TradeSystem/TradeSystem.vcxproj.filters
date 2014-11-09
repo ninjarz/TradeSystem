@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\User">
+      <UniqueIdentifier>{ce8286bf-6536-4433-9ec4-27f22274d064}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Goods">
+      <UniqueIdentifier>{976785ea-34c4-4558-b9ee-47b0c677149e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\User">
+      <UniqueIdentifier>{053d65d4-ee44-4c7e-b941-8c4d0ed655f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Goods">
+      <UniqueIdentifier>{9ca36955-9dd5-42f0-8696-e9e460a6db40}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TradeSystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Goods\Electronics.h">
+      <Filter>头文件\Goods</Filter>
+    </ClInclude>
+    <ClInclude Include="Goods\Food.h">
+      <Filter>头文件\Goods</Filter>
+    </ClInclude>
+    <ClInclude Include="Goods\Goods.h">
+      <Filter>头文件\Goods</Filter>
+    </ClInclude>
+    <ClInclude Include="Goods\Supplies.h">
+      <Filter>头文件\Goods</Filter>
+    </ClInclude>
+    <ClInclude Include="User\Purchaser.h">
+      <Filter>头文件\User</Filter>
+    </ClInclude>
+    <ClInclude Include="User\Seller.h">
+      <Filter>头文件\User</Filter>
+    </ClInclude>
+    <ClInclude Include="User\User.h">
+      <Filter>头文件\User</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="源.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Goods\Electronics.cpp">
+      <Filter>源文件\Goods</Filter>
+    </ClCompile>
+    <ClCompile Include="Goods\Food.cpp">
+      <Filter>源文件\Goods</Filter>
+    </ClCompile>
+    <ClCompile Include="Goods\Goods.cpp">
+      <Filter>源文件\Goods</Filter>
+    </ClCompile>
+    <ClCompile Include="Goods\Supplies.cpp">
+      <Filter>源文件\Goods</Filter>
+    </ClCompile>
+    <ClCompile Include="User\Purchaser.cpp">
+      <Filter>源文件\User</Filter>
+    </ClCompile>
+    <ClCompile Include="User\Seller.cpp">
+      <Filter>源文件\User</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
