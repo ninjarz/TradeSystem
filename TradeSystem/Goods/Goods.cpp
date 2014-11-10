@@ -12,6 +12,19 @@ m_amount(0),
 m_price(0),
 m_owner()
 {
+
+}
+
+Goods::Goods(int _identifier, const string& _goodsName, int _amount, int _price, const string& _owner)
+:
+m_type(GoodsType::GOODS_DEFAULT),
+m_identifier(_identifier),
+m_goodsName(_goodsName),
+m_amount(_amount),
+m_price(_price),
+m_owner(_owner)
+{
+
 }
 
 Goods::Goods(const Goods& _goods)

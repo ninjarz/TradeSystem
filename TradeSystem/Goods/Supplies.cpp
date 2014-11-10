@@ -5,7 +5,15 @@ Supplies::Supplies()
 :
 m_expiryDate(0)
 {
+	m_type = GoodsType::GOODS_SUPPLIES;
+}
 
+Supplies::Supplies(int _identifier, const string& _goodsName, int _amount, int _price, const string& _owner, time_t _expiryDate)
+:
+Goods(_identifier, _goodsName, _amount, _price, _owner),
+m_expiryDate(_expiryDate)
+{
+	m_type = GoodsType::GOODS_SUPPLIES;
 }
 
 Supplies::Supplies(const Supplies& _supplies)
@@ -19,4 +27,14 @@ m_expiryDate(_supplies.m_expiryDate)
 Supplies::~Supplies()
 {
 
+}
+
+void Supplies::SetExpiryDate(time_t _expiryDate)
+{
+	m_expiryDate = _expiryDate;
+}
+
+time_t Supplies::GetExpiryDate()
+{
+	return m_expiryDate;
 }

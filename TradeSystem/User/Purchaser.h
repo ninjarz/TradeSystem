@@ -8,6 +8,7 @@ class Purchaser : public User
 {
 public:
 	Purchaser();
+	Purchaser(int _identifier, const string& _userName, const string& _password, float _balance);
 	Purchaser(const Purchaser& _purchaser);
 	~Purchaser();
 
@@ -30,6 +31,7 @@ class SuperPurchaser : public Purchaser
 {
 public:
 	SuperPurchaser();
+	SuperPurchaser(int _identifier, const string& _userName, const string& _password, float _balance, int m_level, int m_token);
 	SuperPurchaser(const SuperPurchaser& _superPurchaser);
 	~SuperPurchaser();
 

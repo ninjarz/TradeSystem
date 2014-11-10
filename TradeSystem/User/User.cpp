@@ -15,6 +15,18 @@ m_balance(0)
 
 }
 
+User::User(int _identifier, const string& _userName, const string& _password, float _balance)
+:
+m_isLogIn(false),
+m_type(UserType::USER_DEFAULT),
+m_identifier(_identifier),
+m_userName(_userName),
+m_password(_password),
+m_balance(_balance)
+{
+
+}
+
 User::User(const User& _user)
 :
 m_isLogIn(_user.m_isLogIn),

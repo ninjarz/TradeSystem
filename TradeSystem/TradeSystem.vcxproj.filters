@@ -74,5 +74,11 @@
     <ClCompile Include="User\Seller.cpp">
       <Filter>源文件\User</Filter>
     </ClCompile>
+    <ClCompile Include="User\User.cpp">
+      <Filter>源文件\User</Filter>
+    </ClCompile>
+    <ClCompile Include="TradeSystem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

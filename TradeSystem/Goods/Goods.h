@@ -19,6 +19,7 @@ class Goods
 {
 public:
 	Goods();
+	Goods(int _identifier, const string& _goodsName, int _amount, int _price, const string& _owner);
 	Goods(const Goods& _goods);
 	~Goods();
 

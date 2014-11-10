@@ -3,6 +3,9 @@
 
 #include "User/Seller.h"
 #include "User/Purchaser.h"
+#include "Goods/Food.h"
+#include "Goods/Electronics.h"
+#include "Goods/Supplies.h"
 
 #define USER_DATA "UserData.txt"
 #define GOODS_DATA "GoodsData.txt"
@@ -12,7 +15,6 @@ class TradeSystem
 {
 public:
 	TradeSystem();
-	TradeSystem(const TradeSystem& _tradeSystem);
 	~TradeSystem();
 
 	void Run();

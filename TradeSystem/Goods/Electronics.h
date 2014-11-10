@@ -8,12 +8,21 @@ class Electronics : public Goods
 {
 public:
 	Electronics();
+	Electronics(int _identifier, const string& _goodsName, int _amount, int _price, const string& _owner, time_t _expiryDate, time_t _productionDate, int _depreciateFactor);
 	Electronics(const Electronics& _electronics);
 	~Electronics();
 
+	void SetExpiryDate(time_t _expiryDate);
+	void SetProductionDate(time_t _productionDate);
+	void SetDepreciateFactor(time_t _depreciateFactor);
+
+	time_t GetExpiryDate();
+	time_t GetProductionDate();
+	int GetDepreciateFactor();
+
 private:
-	int m_expiryDate;
-	int m_productionDate;
+	time_t m_expiryDate;
+	time_t m_productionDate;
 	int m_depreciateFactor;
 };
 

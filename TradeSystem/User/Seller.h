@@ -8,6 +8,7 @@ class Seller : public User
 {
 public:
 	Seller();
+	Seller(int _identifier, const string& _userName, const string& _password, float _balance);
 	Seller(const Seller& _seller);
 	~Seller();
 

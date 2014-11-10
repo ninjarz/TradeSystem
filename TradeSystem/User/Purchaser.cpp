@@ -3,7 +3,14 @@
 //----------------------------------------------------------------------------------------------------
 Purchaser::Purchaser()
 {
+	m_type = UserType::USER_PURCHASER;
+}
 
+Purchaser::Purchaser(int _identifier, const string& _userName, const string& _password, float _balance)
+:
+User(_identifier, _userName, _password, _balance)
+{
+	m_type = UserType::USER_PURCHASER;
 }
 
 Purchaser::Purchaser(const Purchaser& _purchaser)
@@ -43,7 +50,16 @@ SuperPurchaser::SuperPurchaser()
 m_level(0),
 m_token(0)
 {
+	m_type = UserType::USER_SUPERPURCHASER;
+}
 
+SuperPurchaser::SuperPurchaser(int _identifier, const string& _userName, const string& _password, float _balance, int m_level, int m_token)
+:
+Purchaser(_identifier, _userName, _password, _balance),
+m_level(m_level),
+m_token(m_token)
+{
+	m_type = UserType::USER_SUPERPURCHASER;
 }
 
 SuperPurchaser::SuperPurchaser(const SuperPurchaser& _superPurchaser)

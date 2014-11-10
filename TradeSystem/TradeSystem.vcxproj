@@ -78,8 +78,10 @@
     <ClCompile Include="Goods\Food.cpp" />
     <ClCompile Include="Goods\Goods.cpp" />
     <ClCompile Include="Goods\Supplies.cpp" />
+    <ClCompile Include="TradeSystem.cpp" />
     <ClCompile Include="User\Purchaser.cpp" />
     <ClCompile Include="User\Seller.cpp" />
+    <ClCompile Include="User\User.cpp" />
     <ClCompile Include="源.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

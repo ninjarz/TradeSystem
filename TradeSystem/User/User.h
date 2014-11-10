@@ -13,8 +13,8 @@ using namespace std;
 enum class UserType
 {
 	USER_DEFAULT = 0,
-	USER_PURHASER,
-	USER_VIP,
+	USER_PURCHASER,
+	USER_SUPERPURCHASER,
 	USER_SELLER
 };
 
@@ -22,6 +22,7 @@ class User
 {
 public:
 	User();
+	User(int _identifier, const string& _userName, const string& _password, float _balance);
 	User(const User& _user);
 	~User();
 
