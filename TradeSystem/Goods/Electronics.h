@@ -12,12 +12,15 @@ public:
 	Electronics(const Electronics& _electronics);
 	~Electronics();
 
+	int CalculatePrice(int _num);
+
+
 	void SetExpiryDate(time_t _expiryDate);
 	void SetProductionDate(time_t _productionDate);
-	void SetDepreciateFactor(time_t _depreciateFactor);
+	void SetDepreciateFactor(int _depreciateFactor);
 
-	time_t GetExpiryDate();
-	time_t GetProductionDate();
+	time_t& GetExpiryDate();
+	time_t& GetProductionDate();
 	int GetDepreciateFactor();
 
 private:

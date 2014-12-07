@@ -12,14 +12,16 @@ public:
 	Food(const Food& _food);
 	~Food();
 
+	int CalculatePrice(int _num);
+
 	void SetExpiryDate(time_t _expiryDate);
 	void SetProductionDate(time_t _productionDate);
 	void SetDepreciateDate(time_t _depreciateDate);
-	void SetDepreciateFactor(time_t _depreciateFactor);
+	void SetDepreciateFactor(int _depreciateFactor);
 
-	time_t GetExpiryDate();
-	time_t GetProductionDate();
-	time_t GetDepreciateDate();
+	time_t& GetExpiryDate();
+	time_t& GetProductionDate();
+	time_t& GetDepreciateDate();
 	int GetDepreciateFactor();
 
 private:

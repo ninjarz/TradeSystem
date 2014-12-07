@@ -32,6 +32,15 @@ Electronics::~Electronics()
 
 }
 
+int Electronics::CalculatePrice(int _num)
+{
+	time_t currTime = time(NULL);
+	if (currTime < m_expiryDate)
+		return m_price * (float)m_depreciateFactor / 100 * _num;
+	else
+		return -1;
+}
+
 void Electronics::SetExpiryDate(time_t _expiryDate)
 {
 	m_expiryDate = _expiryDate;
@@ -42,17 +51,17 @@ void Electronics::SetProductionDate(time_t _productionDate)
 	m_productionDate = _productionDate;
 }
 
-void Electronics::SetDepreciateFactor(time_t _depreciateFactor)
+void Electronics::SetDepreciateFactor(int _depreciateFactor)
 {
 	m_depreciateFactor = _depreciateFactor;
 }
 
-time_t Electronics::GetExpiryDate()
+time_t& Electronics::GetExpiryDate()
 {
 	return m_expiryDate;
 }
 
-time_t Electronics::GetProductionDate()
+time_t& Electronics::GetProductionDate()
 {
 	return m_productionDate;
 }

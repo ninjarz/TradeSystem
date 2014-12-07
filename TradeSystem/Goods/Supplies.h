@@ -12,9 +12,11 @@ public:
 	Supplies(const Supplies& _supplies);
 	~Supplies();
 
+	int CalculatePrice(int _num);
+
 	void SetExpiryDate(time_t _expiryDate);
 
-	time_t GetExpiryDate();
+	time_t& GetExpiryDate();
 
 private:
 	time_t m_expiryDate;

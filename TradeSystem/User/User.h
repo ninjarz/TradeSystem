@@ -24,13 +24,12 @@ public:
 	User();
 	User(int _identifier, const string& _userName, const string& _password, float _balance);
 	User(const User& _user);
-	~User();
+	virtual ~User();
 
 	virtual bool Register(const string& _userName, const string& _password) = NULL;
-	virtual bool LogIn(const User& _user);
-	bool LogOut();
+	virtual bool Login();
+	void Logout();
 	virtual void PrintUserInfo();
-	void PrintGoodsList(vector<Goods*>& _goods);
 
 	void SetType(UserType _type);
 	void SetIdentifier(int _identifier);
@@ -47,7 +46,7 @@ public:
 protected:
 	static int s_userCounter;
 
-	bool m_isLogIn;
+	bool m_isLogin;
 	UserType m_type;
 	int m_identifier;
 	string m_userName;

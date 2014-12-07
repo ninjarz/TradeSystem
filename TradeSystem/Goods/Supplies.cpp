@@ -29,12 +29,21 @@ Supplies::~Supplies()
 
 }
 
+int Supplies::CalculatePrice(int _num)
+{
+	time_t currTime = time(NULL);
+	if (currTime < m_expiryDate)
+		return m_price * _num;
+	else
+		return -1;
+}
+
 void Supplies::SetExpiryDate(time_t _expiryDate)
 {
 	m_expiryDate = _expiryDate;
 }
 
-time_t Supplies::GetExpiryDate()
+time_t& Supplies::GetExpiryDate()
 {
 	return m_expiryDate;
 }

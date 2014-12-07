@@ -5,7 +5,7 @@ int User::s_userCounter = 0;
 
 User::User()
 :
-m_isLogIn(false),
+m_isLogin(false),
 m_type(UserType::USER_DEFAULT),
 m_identifier(0),
 m_userName(),
@@ -17,7 +17,7 @@ m_balance(0)
 
 User::User(int _identifier, const string& _userName, const string& _password, float _balance)
 :
-m_isLogIn(false),
+m_isLogin(false),
 m_type(UserType::USER_DEFAULT),
 m_identifier(_identifier),
 m_userName(_userName),
@@ -29,7 +29,7 @@ m_balance(_balance)
 
 User::User(const User& _user)
 :
-m_isLogIn(_user.m_isLogIn),
+m_isLogin(_user.m_isLogin),
 m_type(_user.m_type),
 m_identifier(_user.m_identifier),
 m_userName(_user.m_userName),
@@ -44,19 +44,16 @@ User::~User()
 
 }
 
-bool User::LogIn(const User& _user)
+bool User::Login()
 {
-	*this = _user;    //it need to be tested
-	m_isLogIn = true;
+	m_isLogin = true;
 
 	return true;
 }
 
-bool User::LogOut()
+void User::Logout()
 {
-	m_isLogIn = false;
-
-	return true;
+	m_isLogin = false;
 }
 
 void User::PrintUserInfo()
@@ -64,12 +61,7 @@ void User::PrintUserInfo()
 	//for console
 	cout << "ID:" << m_identifier;
 	cout << " \tName:" << m_userName;
-	cout << " \tBalance:" << m_balance;
-}
-
-void User::PrintGoodsList(vector<Goods*>& _goods)
-{
-
+	cout << " \tBalance:" << m_balance << '\n';
 }
 
 void User::SetType(UserType _type)

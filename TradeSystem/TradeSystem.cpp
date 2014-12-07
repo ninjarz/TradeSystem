@@ -1,12 +1,15 @@
 #include "TradeSystem.h"
 
+#pragma warning(disable: 4996)
+
 //----------------------------------------------------------------------------------------------------
 TradeSystem::TradeSystem()
 :
 m_userFile(USER_DATA),
 m_goodsFile(GOODS_DATA),
 m_users(),
-m_goods()
+m_goods(),
+m_client(NULL)
 {
 	if (m_userFile.is_open())
 	{
@@ -25,7 +28,303 @@ TradeSystem::~TradeSystem()
 
 void TradeSystem::Run()
 {
+	while (!m_client)
+	{
+		int cmd = 0;
+		while (cmd != 1 && cmd != 2)
+		{
+			cout << "1.Login" << endl;
+			cout << "2.Register" << endl;
+			cin >> cmd;
+		}
+		
+		switch (cmd)
+		{
+		case 1:
+		{
+				  cout << "ÊäÈëÕËºÅÃÜÂë:" << endl;
+				  string name;
+				  cin >> name;
+				  string passworld;
+				  cin >> passworld;
+				  Login(name, passworld);
+		}
+			break;
+		case 2:
+		{
+				  cmd = 0;
+				  while (cmd != 1 && cmd != 2)
+				  {
+					  cout << "1.Purchaser" << endl;
+					  cout << "2.Purchaser" << endl;
+					  cin >> cmd;
+				  }
+				  cout << "ÊäÈëÕËºÅÃÜÂë:" << endl;
+				  string name;
+				  cin >> name;
+				  string passworld;
+				  cin >> passworld;
+				  Register(name, passworld, cmd);
+		}
+			break;
 
+		default:
+			cout << "Error" << endl;
+			break;
+		}
+	}
+
+	int cmd = 0;
+	if (m_client->GetType() != UserType::USER_SELLER)
+	{
+		while (cmd != 5)
+		{
+			cout << "1.PrintUserInfo" << endl;
+			cout << "2.PrintGoodsList" << endl;
+			cout << "3.Recharge" << endl;
+			cout << "4.BuyGoods" << endl;
+			cout << "5.Quit" << endl;
+			cin >> cmd;
+
+			switch (cmd)
+			{
+			case 1:
+				m_client->PrintUserInfo();
+				break;
+			case 2:
+				PrintGoodsList();
+				break;
+			case 3:
+			{
+					  int money = 0;
+					  cout << "Money:" << endl;
+					  cin >> money;
+					  ((Purchaser*)m_client)->Recharge(money);
+			}
+				break;
+			case 4:
+			{
+					  int id = -1;
+					  int number = 0;
+					  cout << "Id and number:" << endl;
+					  cin >> id;
+					  cin >> number;
+					  BuyGoods(id, number);
+					  break;
+			}
+			case 5:
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	else
+	{
+		while (cmd != 5)
+		{
+			cout << "1.PrintUserInfo" << endl;
+			cout << "2.PrintGoodsList" << endl;
+			cout << "3.PrintMyGoodsList" << endl;
+			cout << "4.BuyGoods" << endl;
+			cout << "5.Quit" << endl;
+			cin >> cmd;
+
+			switch (cmd)
+			{
+			case 1:
+				m_client->PrintUserInfo();
+				break;
+			case 2:
+				PrintGoodsList();
+				break;
+			case 3:
+				PrintMyGoodsList();
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			default:
+				break;
+			}
+		}
+	}
+}
+
+bool TradeSystem::Login(string _name, string _password)
+{
+	for (User* user : m_users)
+	{
+		if (user->GetUserName() == _name)
+		{
+			if (user->GetPassword() == _password)
+			{
+				m_client = user;
+				m_client->Login();
+				m_client->PrintUserInfo();
+				return true;
+			}
+			else
+				return false;   //password error
+		}
+	}
+
+	return false;
+}
+
+bool TradeSystem::Register(string _name, string _password, int _type)
+{
+	for (User* user : m_users)
+	{
+		if (user->GetUserName() == _name)
+		{
+			return false;   //userName already exists
+		}
+	}
+
+	switch (_type)
+	{
+	case 0:
+	{
+			  Purchaser *newUser = new Purchaser;
+			  newUser->Register(_name, _password);
+			  m_users.push_back(newUser);
+	}
+		break;
+	case 1:
+	{
+			  Seller *newUser = new Seller;
+			  newUser->Register(_name, _password);
+			  m_users.push_back(newUser);
+	}
+		break;
+	default:
+		return false;
+	}
+
+	return true;
+}
+
+void TradeSystem::PrintGoodsList()
+{
+	for (Goods* goods : m_goods)
+	{
+		cout << goods->GetIdentifier() << endl;
+		switch (goods->GetType())
+		{
+		case GoodsType::GOODS_FOOD:
+			cout << "FOOD" << endl;
+			break;
+		case GoodsType::GOODS_ELECTRONICS:
+			cout << "ELECTRONICS" << endl;
+			break;
+		case GoodsType::GOODS_SUPPLIES:
+			cout << "SUPPLIES" << endl;
+			break;
+		default:
+			break;
+		}
+		cout << goods->GetGoodsName() << endl;
+		cout << goods->GetAmount() << endl;
+		cout << (float)goods->CalculatePrice(1) / 10 << endl;
+		cout << ctime(&goods->GetExpiryDate());
+		cout << goods->GetOwner() << endl;
+	}
+}
+
+void TradeSystem::PrintMyGoodsList()
+{
+	if (m_client)
+	{
+		if (m_client->GetType() == UserType::USER_SELLER)
+		{
+			for (Goods* goods : m_goods)
+			{
+				if (goods->GetOwner() == m_client->GetUserName())
+				{
+					cout << goods->GetIdentifier() << endl;
+					switch (goods->GetType())
+					{
+					case GoodsType::GOODS_FOOD:
+						cout << "FOOD" << endl;
+						break;
+					case GoodsType::GOODS_ELECTRONICS:
+						cout << "ELECTRONICS" << endl;
+						break;
+					case GoodsType::GOODS_SUPPLIES:
+						cout << "SUPPLIES" << endl;
+						break;
+					default:
+						break;
+					}
+					cout << goods->GetGoodsName() << endl;
+					cout << goods->GetAmount() << endl;
+					cout << (float)goods->CalculatePrice(1) / 10 << endl;
+					cout << ctime(&goods->GetExpiryDate()) << endl;
+					cout << goods->GetOwner() << endl;
+				}
+			}
+		}
+	}
+}
+
+User* TradeSystem::FindUser(const std::string& _name)
+{
+	for (User* user : m_users)
+	{
+		if (user->GetUserName() == _name)
+			return user;
+	}
+
+	return NULL;
+}
+
+Goods* TradeSystem::FindGoods(int _id)
+{
+	for (Goods* goods : m_goods)
+	{
+		if (goods->GetIdentifier() == _id)
+			return goods;
+	}
+
+	return NULL;
+}
+
+bool TradeSystem::BuyGoods(int _id, int _num)
+{
+	if (m_client)
+	{
+		if (m_client->GetType() != UserType::USER_SELLER)
+		{
+			Goods* goods = FindGoods(_id);
+			if (goods)
+			{
+				if (goods->GetAmount() >= _num && m_client->GetBalance() >= goods->CalculatePrice(_num))
+				{
+					m_client->SetBalance(m_client->GetBalance() - goods->CalculatePrice(_num));
+					User* seller = FindUser(goods->GetOwner());
+					seller->SetBalance(seller->GetBalance() + goods->CalculatePrice(_num));
+					goods->SetAmount(goods->GetAmount() - _num);
+
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
+}
+
+bool TradeSystem::AddGoods(Goods* _goods)
+{
+	if (_goods)
+	{
+		m_goods.push_back(_goods);
+		return true;
+	}
+
+	return false;
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -127,7 +426,7 @@ _Input& operator>> (_Input& _input, User*& _user)
 template <class _Input>
 _Input& operator>> (_Input& _input, vector<User*>& _users)
 {
-	while (_input.eof())
+	while (!_input.eof())
 	{
 		User *user = NULL;
 		_input >> user;
@@ -142,7 +441,7 @@ _Input& operator>> (_Input& _input, vector<User*>& _users)
 }
 
 template <class _Output>
-_Output& operator<< (_Output& _output, UserType& _type)
+_Output& operator<< (_Output& _output, UserType&& _type)
 {
 	switch (_type)
 	{
@@ -324,7 +623,7 @@ _Input& operator>> (_Input& _input, Goods*& _goods)
 template <class _Input>
 _Input& operator>> (_Input& _input, vector<Goods*>& _goods)
 {
-	while (_input.eof())
+	while (!_input.eof())
 	{
 		Goods *goods = NULL;
 		_input >> goods;
@@ -339,7 +638,7 @@ _Input& operator>> (_Input& _input, vector<Goods*>& _goods)
 }
 
 template <class _Output>
-_Output& operator<< (_Output& _output, GoodsType& _type)
+_Output& operator<< (_Output& _output, GoodsType&& _type)
 {
 	switch (_type)
 	{
@@ -372,7 +671,7 @@ _Output& operator<< (_Output& _output, Goods*& _goods)
 	_output << _goods->GetAmount() << " ";
 	_output << _goods->GetPrice() << " ";
 	_output << _goods->GetOwner() << " ";
-	switch (_user->GetType())
+	switch (_goods->GetType())
 	{
 	case GoodsType::GOODS_FOOD:
 		_output << ((Food*)_goods)->GetExpiryDate() << " ";

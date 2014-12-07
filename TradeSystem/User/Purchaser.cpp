@@ -93,7 +93,7 @@ void SuperPurchaser::PrintUserInfo()
 	cout << " \tName:" << m_userName;
 	cout << " \tBalance:" << m_balance;
 	cout << " \tVIP Level:" << m_level;
-	cout << " \tToken:" << m_token;
+	cout << " \tToken:" << m_token << '\n';
 	cout << endl;
 }
 

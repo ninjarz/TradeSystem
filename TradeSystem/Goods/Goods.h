@@ -38,6 +38,7 @@ public:
 	int GetAmount();
 	int GetPrice();
 	string GetOwner();
+	virtual time_t& GetExpiryDate() = 0;
 
 protected:
 	static int m_goodsCounter;

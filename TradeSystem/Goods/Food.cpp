@@ -38,6 +38,17 @@ Food::~Food()
 
 }
 
+int Food::CalculatePrice(int _num)
+{
+	time_t currTime = time(NULL);
+	if (currTime < m_depreciateDate)
+		return m_price * _num;
+	else if (currTime < m_expiryDate)
+		return m_price * (float)m_depreciateFactor / 100 * _num;
+	else
+		return -1;
+}
+
 void Food::SetExpiryDate(time_t _expiryDate)
 {
 	m_expiryDate = _expiryDate;
@@ -53,22 +64,22 @@ void Food::SetDepreciateDate(time_t _depreciateDate)
 	m_depreciateDate = _depreciateDate;
 }
 
-void Food::SetDepreciateFactor(time_t _depreciateFactor)
+void Food::SetDepreciateFactor(int _depreciateFactor)
 {
 	m_depreciateFactor = _depreciateFactor;
 }
 
-time_t Food::GetExpiryDate()
+time_t& Food::GetExpiryDate()
 {
 	return m_expiryDate;
 }
 
-time_t Food::GetProductionDate()
+time_t& Food::GetProductionDate()
 {
 	return m_productionDate;
 }
 
-time_t Food::GetDepreciateDate()
+time_t& Food::GetDepreciateDate()
 {
 	return m_depreciateDate;
 }

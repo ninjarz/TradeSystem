@@ -18,6 +18,14 @@ public:
 	~TradeSystem();
 
 	void Run();
+	bool Login(string _name, string _password);
+	bool Register(string _name, string _password, int _type);
+	void PrintGoodsList();
+	void PrintMyGoodsList();
+	User* FindUser(const string& _name);
+	Goods* FindGoods(int _id);
+	bool BuyGoods(int _id, int _num);
+	bool AddGoods(Goods* _goods);
 
 private:
 	fstream m_userFile;
@@ -25,6 +33,8 @@ private:
 
 	vector<User*> m_users;
 	vector<Goods*> m_goods;
+
+	User *m_client;
 };
 
 //----------------------------------------------------------------------------------------------------
