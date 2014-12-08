@@ -8,6 +8,7 @@ class Food : public Goods
 {
 public:
 	Food();
+	Food(const string& _goodsName, int _amount, int _price, const string& _owner, time_t _expiryDate, time_t _productionDate, time_t _depreciateDate, int _depreciateFactor);
 	Food(int _identifier, const string& _goodsName, int _amount, int _price, const string& _owner, time_t _expiryDate, time_t _productionDate, time_t _depreciateDate, int _depreciateFactor);
 	Food(const Food& _food);
 	~Food();

@@ -126,7 +126,7 @@ void TradeSystem::Run()
 			cout << "1.PrintUserInfo" << endl;
 			cout << "2.PrintGoodsList" << endl;
 			cout << "3.PrintMyGoodsList" << endl;
-			cout << "4.BuyGoods" << endl;
+			cout << "4.AddGoods" << endl;
 			cout << "5.Quit" << endl;
 			cin >> cmd;
 
@@ -142,6 +142,96 @@ void TradeSystem::Run()
 				PrintMyGoodsList();
 				break;
 			case 4:
+			{
+					  cout << "1.Food" << endl;
+					  cout << "2.Electronics" << endl;
+					  cout << "3.Supplies" << endl;
+					  cin >> cmd;
+					  switch (cmd)
+					  {
+					  case 1:
+					  {
+								string name;
+								cin >> name;
+								int amount;
+								cin >> amount;
+								float price;
+								cin >> price;
+								tm expiryDate;
+								cin >> expiryDate.tm_year;
+								expiryDate.tm_year -= 1900;
+								cin >> expiryDate.tm_mon;
+								expiryDate.tm_mon -= 1;
+								cin >> expiryDate.tm_mday;
+								tm productionDate;
+								cin >> productionDate.tm_year;
+								productionDate.tm_year -= 1900;
+								cin >> productionDate.tm_mon;
+								productionDate.tm_mon -= 1;
+								cin >> productionDate.tm_mday;
+								tm depreciateDate;
+								cin >> depreciateDate.tm_year;
+								depreciateDate.tm_year -= 1900;
+								cin >> depreciateDate.tm_mon;
+								depreciateDate.tm_mon -= 1;
+								cin >> depreciateDate.tm_mday;
+								float depreciateFactor;
+								cin >> depreciateFactor;
+
+								Food *food = new Food(name, amount, (int)(price * 10), m_client->GetUserName(), mktime(&expiryDate), mktime(&productionDate), mktime(&depreciateDate), (int)(depreciateFactor*100));
+								AddGoods(food);
+					  }
+						  break;
+					  case 2:
+					  {
+								string name;
+								cin >> name;
+								int amount;
+								cin >> amount;
+								float price;
+								cin >> price;
+								tm expiryDate;
+								cin >> expiryDate.tm_year;
+								expiryDate.tm_year -= 1900;
+								cin >> expiryDate.tm_mon;
+								expiryDate.tm_mon -= 1;
+								cin >> expiryDate.tm_mday;
+								tm productionDate;
+								cin >> productionDate.tm_year;
+								productionDate.tm_year -= 1900;
+								cin >> productionDate.tm_mon;
+								productionDate.tm_mon -= 1;
+								cin >> productionDate.tm_mday;
+								float depreciateFactor;
+								cin >> depreciateFactor;
+
+								Electronics *electronics = new Electronics(name, amount, (int)(price * 10), m_client->GetUserName(), mktime(&expiryDate), mktime(&productionDate), (int)(depreciateFactor * 100));
+								AddGoods(electronics);
+					  }
+						  break;
+					  case 3:
+					  {
+								string name;
+								cin >> name;
+								int amount;
+								cin >> amount;
+								float price;
+								cin >> price;
+								tm expiryDate;
+								cin >> expiryDate.tm_year;
+								expiryDate.tm_year -= 1900;
+								cin >> expiryDate.tm_mon;
+								expiryDate.tm_mon -= 1;
+								cin >> expiryDate.tm_mday;
+
+								Supplies *supplies = new Supplies(name, amount, (int)(price * 10), m_client->GetUserName(), mktime(&expiryDate));
+								AddGoods(supplies);
+					  }
+						  break;
+					  default:
+						  break;
+					  }
+			}
 				break;
 			case 5:
 				break;
@@ -261,8 +351,7 @@ void TradeSystem::PrintMyGoodsList()
 					cout << goods->GetGoodsName() << endl;
 					cout << goods->GetAmount() << endl;
 					cout << (float)goods->CalculatePrice(1) / 10 << endl;
-					cout << ctime(&goods->GetExpiryDate()) << endl;
-					cout << goods->GetOwner() << endl;
+					cout << ctime(&goods->GetExpiryDate());
 				}
 			}
 		}

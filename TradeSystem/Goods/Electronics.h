@@ -8,6 +8,7 @@ class Electronics : public Goods
 {
 public:
 	Electronics();
+	Electronics(const string& _goodsName, int _amount, int _price, const string& _owner, time_t _expiryDate, time_t _productionDate, int _depreciateFactor);
 	Electronics(int _identifier, const string& _goodsName, int _amount, int _price, const string& _owner, time_t _expiryDate, time_t _productionDate, int _depreciateFactor);
 	Electronics(const Electronics& _electronics);
 	~Electronics();

@@ -11,6 +11,18 @@ m_depreciateFactor(0)
 	m_type = GoodsType::GOODS_FOOD;
 }
 
+Food::Food(const string& _goodsName, int _amount, int _price, const string& _owner, time_t _expiryDate, time_t _productionDate, time_t _depreciateDate, int _depreciateFactor)
+:
+Goods(_goodsName, _amount, _price, _owner),
+m_expiryDate(_expiryDate),
+m_productionDate(_productionDate),
+m_depreciateDate(_depreciateDate),
+m_depreciateFactor(_depreciateFactor)
+{
+	m_type = GoodsType::GOODS_FOOD;
+}
+
+
 Food::Food(int _identifier, const string& _goodsName, int _amount, int _price, const string& _owner, time_t _expiryDate, time_t _productionDate, time_t _depreciateDate, int _depreciateFactor)
 :
 Goods(_identifier, _goodsName, _amount, _price, _owner),

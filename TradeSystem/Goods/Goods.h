@@ -19,6 +19,7 @@ class Goods
 {
 public:
 	Goods();
+	Goods(const string& _goodsName, int _amount, int _price, const string& _owner);
 	Goods(int _identifier, const string& _goodsName, int _amount, int _price, const string& _owner);
 	Goods(const Goods& _goods);
 	~Goods();
@@ -41,7 +42,7 @@ public:
 	virtual time_t& GetExpiryDate() = 0;
 
 protected:
-	static int m_goodsCounter;
+	static int s_goodsCounter;
 
 	GoodsType m_type;
 	int m_identifier;
